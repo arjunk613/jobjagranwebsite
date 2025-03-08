@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Fetch JSON data
     async function fetchJobs() {
-        const response = await fetch("src/data/jobs.json");
+        const response = await fetch("/data/jobs.json");
         jobs = await response.json();
 
         // Sort jobs by latest date & time
