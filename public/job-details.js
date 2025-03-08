@@ -53,7 +53,7 @@ function loadRelatedJobs(category, currentJobId, jobs) {
         jobCard.className = "bg-white shadow-md rounded-lg p-4 hover:shadow-xl transition inline-block w-56 text-center";
 
         jobCard.innerHTML = `
-            <a href="job-details.html?id=${job.id}">
+            <a href="/job-details.html?id=${job.id}">
                 <h3 class="text-lg font-bold mt-3">${job.title}</h3>
                 <p class="text-sm text-red-600 font-semibold">${job.category}</p>
             </a>
