@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         return;
     }
 
-    const response = await fetch("/data/jobs.json");
+    const response = await fetch("src/data/jobs.json");
     const jobs = await response.json();
     const job = jobs.find(j => j.id == jobId);
 
