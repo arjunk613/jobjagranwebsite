@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     document.getElementById("job-description").textContent = job.description;
     document.getElementById("job-eligibility").textContent = job.eligibility;
     document.getElementById("job-apply-link").href = job.apply_link;
-
+    document.getElementById("last-date").innerHTML = job.lastDateToApply;
     // Load Related Jobs
     loadRelatedJobs(job.category, job.id, jobs);
 });
