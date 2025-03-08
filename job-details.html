@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script> <!-- Icons -->
+</head>
+<body class="bg-gray-50 text-gray-900">
+<!-- 🔹 Navbar -->
+<!-- 🔹 Sticky Header with Scroll Effect -->
+<header id="navbar" class="bg-indigo-600 shadow-md fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out py-4">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <div>
+            <a href="#" class="text-white text-2xl font-bold">JobJagaran</a>
+            <p id="slogan" class="text-xs text-gray-200 italic">"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन" – Bhagavad Gita</p>
+        </div>
+        <nav class="hidden md:flex space-x-6">
+            <a href="#" class="text-white hover:text-gray-200">Home</a>
+            <a href="#" class="text-white hover:text-gray-200">Jobs</a>
+            <a href="#" class="text-white hover:text-gray-200">About</a>
+            <a href="#" class="text-white hover:text-gray-200">Contact</a>
+        </nav>
+        <button class="md:hidden text-white focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+    </div>
+</header>
+
+<!-- Add padding to body to prevent content from being hidden under the fixed header -->
+<style>
+    body {
+        padding-top: 64px; /* Adjusted to prevent overlap */
+    }
+</style>
+
+<!-- Load Navbar Scroll Script -->
+<script src="src/navbar.js"></script>
+
+
+<!-- Header Section Ends here -->
+    <!-- 🔹 Back Button -->
+    <div class="max-w-7xl mx-auto p-6">
+        <a href="index.html" class="text-indigo-600 hover:underline flex items-center">
+            <i class="ph ph-arrow-left text-xl"></i> <span class="ml-2">Back to Jobs</span>
+        </a>
+    </div>
+
+    <!-- 🔹 Job Details Section -->
+    <section class="max-w-5xl mx-auto p-6 bg-white shadow-md rounded-lg">
+        <img id="job-image" class="w-full h-60 object-cover rounded-lg mb-4" alt="Job Image">
+        
+        <h1 id="job-title" class="text-3xl font-bold mb-2"></h1>
+
+        <div class="flex items-center text-gray-600 mb-4">
+            <i class="ph ph-tag text-xl mr-2"></i>
+            <p id="job-category" class="text-sm font-semibold"></p>
+        </div>
+
+        <div class="flex items-center text-gray-500 mb-4">
+            <i class="ph ph-calendar text-xl mr-2"></i>
+            <p id="job-time" class="text-sm"></p>
+        </div>
+
+        <p id="job-description" class="text-lg mb-6 leading-relaxed"></p>
+
+        <div class="flex items-center text-gray-700 mb-4">
+            <i class="ph ph-user-check text-xl mr-2"></i>
+            <p><strong>Eligibility:</strong> <span id="job-eligibility"></span></p>
+        </div>
+
+        <a id="job-apply-link" href="#" target="_blank" class="block mt-6 text-white bg-indigo-600 px-6 py-2 rounded-lg hover:bg-indigo-700 text-center font-semibold">
+            Apply Now
+        </a>
+    </section>
+
+<!-- 🔹 Related Jobs Section -->
+<!-- 🔹 Related Jobs Section -->
+<section class="max-w-7xl mx-auto p-6 relative">
+    <h2 class="text-2xl font-bold mb-4">Related Jobs</h2>
+
+    <!-- Left Arrow (Centered & Transparent) -->
+    <button id="related-prev-btn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-900 bg-opacity-60 text-white p-4 rounded-full shadow-lg hover:scale-110 transition hidden z-10">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+    </button>
+
+    <!-- Scrollable Related Jobs List -->
+    <div id="related-jobs-container" class="overflow-hidden relative">
+        <div id="related-jobs" class="inline-flex space-x-4 no-scrollbar">
+            <!-- Related jobs will be dynamically injected here -->
+        </div>
+    </div>
+
+    <!-- Right Arrow (Centered & Transparent) -->
+    <button id="related-next-btn" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-900 bg-opacity-60 text-white p-4 rounded-full shadow-lg hover:scale-110 transition hidden z-10">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+    </button>
+</section>
+
+<!-- Hide Scrollbar Style -->
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Hover Glow Effect */
+  #related-prev-btn:hover, #related-next-btn:hover {
+      box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.5);
+  }
+
+  /* Smooth Transition & Better Visibility */
+  #related-prev-btn, #related-next-btn {
+      transition: background-color 0.3s ease-in-out, transform 0.2s;
+  }
+
+  /* Larger Clickable Area */
+  #related-prev-btn svg, #related-next-btn svg {
+      width: 28px;
+      height: 28px;
+  }
+</style>
+<!-- Related Jobs section ends here -->
+
+    <script src="src/job-details.js"></script>
+
+</body>
+</html>
