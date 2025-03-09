@@ -67,9 +67,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         categories.forEach(category => {
             const tab = document.createElement("button");
-            tab.className = `px-5 py-3 rounded-full bg-white text-gray-700 border border-gray-300 shadow-md hover:bg-blue-400 hover:text-white transition duration-300 ease-in-out transform hover:scale-105 ${
-                activeTab === category ? "bg-blue-500 text-white" : ""
-            }`;
+            tab.className = `px-5 py-3 rounded-full bg-white text-gray-700 border border-gray-300 shadow-md hover:bg-blue-400 hover:text-white transition duration-300 ease-in-out transform hover:scale-105 ${activeTab === category ? "bg-blue-500 text-white" : ""
+                }`;
             tab.innerText = category;
 
             tab.onclick = () => {
@@ -82,31 +81,49 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     // 🔹 Filter Jobs by Selected Category and Render Table
+    // 🔹 Filter Jobs by Selected Category and Render Table
+    // 🔹 Filter Jobs by Selected Category and Render Table
     function updateFilteredJobs() {
         jobTableBody.innerHTML = ""; // Clear previous job list
 
         const filteredJobs = jobs.filter(job => job.subcategory === activeTab);
-        
+
         if (filteredJobs.length === 0) {
-            jobTableBody.innerHTML = `<tr><td colspan="5" class="text-center text-gray-500 p-4">No jobs available in this category</td></tr>`;
+            jobTableBody.innerHTML = `<tr><td colspan="5" class="text-center text-gray-500 p-4">No jobs available in this department</td></tr>`;
             return;
         }
 
-        filteredJobs.forEach(job => {
+        filteredJobs.forEach((job, index) => {
             const row = document.createElement("tr");
+            row.className = `group hover:bg-blue-50 transition duration-300 ease-in-out hover:shadow-md transform hover:scale-[1.02] ${index % 2 === 0 ? "bg-white" : "bg-gray-100"}`;
+
+
             row.innerHTML = `
-                <td class="border p-2 text-blue-500 underline cursor-pointer" onclick="navigateToJob(${job.id})">${job.title}</td>
-                <td class="border p-2">${job.category}</td>
-                <td class="border p-2">${job.subcategory}</td>
-                <td class="border p-2">${job.description}</td>
-                <td class="border p-2">${job.eligibility}</td>
-            `;
+            <td class="border p-2 text-blue-500 underline cursor-pointer" onclick="navigateToJob(${job.id})">${job.title}</td>
+            <td class="border p-4">${job.domain}</td>
+            <td class="border p-4">${job.lastDateToApply}</td>
+            <td class="border p-4">
+                ${job.tags ? job.tags.map(tag => `<span class="inline-block bg-blue-200 text-blue-700 text-xs px-2 py-1 rounded-full mr-1">${tag}</span>`).join("") : "N/A"}
+            </td>
+            <td class="border p-4 text-center">
+    <a href="/job-details.html?id=${job.id}" 
+       class="bg-blue-500 text-white px-4 py-2 rounded-full shadow-md transition duration-300 ease-in-out transform group-hover:bg-green-500 group-hover:scale-110">
+       Click Here
+    </a>
+</td>
+
+        </td>
+        
+
+        `;
             jobTableBody.appendChild(row);
         });
 
         // Re-render tabs to update the active state
         renderTabs();
     }
+
+
 
     // 🔹 Navigate to Job Details Page
     window.navigateToJob = function (jobId) {
