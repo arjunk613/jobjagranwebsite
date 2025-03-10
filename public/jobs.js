@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const categories = [
         "Government Jobs", "IT & Software Jobs", "Banking & Finance Jobs",
         "Engineering Jobs", "Healthcare & Medical Jobs", "Teaching & Education Jobs",
-        "Defence & Police Jobs", "Railway Jobs", "Public Sector (PSU) Jobs", "SSC & UPSC Jobs"
+        "Defence & Police Jobs", "Railway Jobs", "Public Sector (PSU) Jobs", "SSC & UPSC Jobs","Media & Communication Jobs"
     ];
 
     // Fetch JSON data

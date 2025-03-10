@@ -19,12 +19,24 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Populate Job Details Page
     document.getElementById("job-title").textContent = job.title;
     document.getElementById("job-category").textContent = job.category;
-    document.getElementById("job-time").textContent = new Date(job.time).toLocaleString();
+    const postedDate = new Date(job.postedTime);
+    document.getElementById("job-time").textContent = !isNaN(postedDate)
+        ? postedDate.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+        : "Invalid Date";
+
+    document.getElementById("last-date").textContent = `📅 Last Date: ${job.lastDateToApply}`;
+
     document.getElementById("job-image").src = job.image;
-    document.getElementById("job-description").textContent = job.description;
-    document.getElementById("job-eligibility").textContent = job.eligibility;
+    document.getElementById("job-description").innerHTML = job.description;
+    document.getElementById("job-eligibility").innerHTML = job.eligibility;
     document.getElementById("job-apply-link").href = job.apply_link;
-    document.getElementById("last-date").innerHTML = job.lastDateToApply;
+    document.getElementById("last-date").innerHTML = `
+    <div class="bg-red-100 text-red-700 font-bold px-4 py-2 rounded-lg shadow-md text-center text-lg animate-pulse flex items-center justify-center space-x-2">
+        <i class="ph ph-warning text-2xl"></i>
+        <span>🚨 Last Date to Apply: ${job.lastDateToApply}</span>
+    </div>
+`;
+
     // Load Related Jobs
     loadRelatedJobs(job.category, job.id, jobs);
 });
