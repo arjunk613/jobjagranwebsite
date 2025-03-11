@@ -137,14 +137,15 @@ function renderTabs() {
                 <td class="p-4 text-gray-700 text-left whitespace-nowrap">${job.domain}</td>
                 <td class="p-4 text-gray-700 text-center whitespace-nowrap">${job.lastDateToApply}</td>
                 <td class="p-4 text-center">
-                    ${job.tags ? job.tags.map(tag => `<span class="inline-block bg-blue-200 text-blue-700 text-xs px-3 py-1 rounded-full mr-1">${tag}</span>`).join("") : "N/A"}
+                    ${job.tags ? job.tags.map(tag => `<span class="inline-block bg-blue-200 text-blue-700 text-xs px-3 py-1 rounded-full mr-1">#${tag}</span>`).join("") : "N/A"}
                 </td>
-                <td class="p-4 text-center">
-                    <a href="/job-details.html?id=${job.id}" 
-                       class="inline-block bg-gradient-to-r from-green-500 to-green-700 text-white px-5 py-2 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-110 hover:from-green-600 hover:to-green-800">
-                       Apply Now
-                    </a>
-                </td>
+                <td class="p-4 text-center whitespace-nowrap">
+                <a href="/job-details.html?id=${job.id}" 
+                   class="inline-flex justify-center items-center bg-gradient-to-r from-green-500 to-green-700 text-white px-5 py-2 min-w-[120px] rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-110 hover:from-green-600 hover:to-green-800 whitespace-nowrap">
+                   Apply Now
+                </a>
+            </td>
+            
             `;
     
             jobTableBody.appendChild(row);
